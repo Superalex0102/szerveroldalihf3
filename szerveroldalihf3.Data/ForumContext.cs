@@ -16,7 +16,7 @@ namespace szerveroldalihf3.Data
 
         public ForumContext(DbContextOptions<ForumContext> opt) : base(opt)
         {
-
+            Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
