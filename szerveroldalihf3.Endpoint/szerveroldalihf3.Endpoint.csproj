@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="AutoMapper" Version="14.0.0" />
+	  <PackageReference Include="Hangfire.AspNetCore" Version="1.8.18" />
+	  <PackageReference Include="Hangfire.SqlServer" Version="1.8.18" />
+	  <PackageReference Include="Humanizer" Version="2.14.1" />
+	  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.13" />
+	  <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.13" />
+	  <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.2.0" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.13" />
+	  <PackageReference Include="SlugGenerator" Version="2.0.2" />
+	  <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\szerveroldalihf3.Data\szerveroldalihf3.Data.csproj" />
+    <ProjectReference Include="..\szerveroldalihf3.Entities\szerveroldalihf3.Entities.csproj" />
+    <ProjectReference Include="..\szerveroldalihf3.Logic\szerveroldalihf3.Logic.csproj" />
+  </ItemGroup>
+
+</Project>

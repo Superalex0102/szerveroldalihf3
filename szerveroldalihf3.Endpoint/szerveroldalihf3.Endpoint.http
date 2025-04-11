@@ -1,0 +1,6 @@
+@szerveroldalihf3.Endpoint_HostAddress = http://localhost:5214
+
+GET {{szerveroldalihf3.Endpoint_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
