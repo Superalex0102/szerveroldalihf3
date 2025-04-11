@@ -30,6 +30,7 @@ namespace szerveroldalihf3.Logic
         public async Task Create(BugCreateDto dto)
         {
             var forum = mapper.Map<Bug>(dto);
+            forum.AppUserId = "1";
             await repository.CreateAsync(forum);
         }
     }
