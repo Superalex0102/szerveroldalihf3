@@ -21,13 +21,15 @@ namespace szerveroldalihf3.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<Bug>()
                 .HasOne(b => b.AppUser)
                 .WithMany(u => u.Bugs)
-                .HasForeignKey(b => b.Id)
                 .OnDelete(DeleteBehavior.Cascade);
 
             base.OnModelCreating(modelBuilder);
         }
+        
+        
     }
 }

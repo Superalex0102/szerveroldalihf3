@@ -19,6 +19,9 @@ namespace szerveroldalihf3.Entities.Entity
         public string Description { get; set; } = string.Empty;
         public DateTime Date { get; set; }
 
+        [ForeignKey("AppUser")]
+        public string AppUserId { get; set; }
+
         [NotMapped]
         public virtual AppUser? AppUser { get; set; }
     }
