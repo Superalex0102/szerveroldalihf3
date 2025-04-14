@@ -101,7 +101,7 @@ namespace szerveroldalihf3.Endpoint
             });
 
             builder.Services.AddHangfire(config =>
-                    config.UseSqlServerStorage("Server=(localdb)\\MSSQLLocalDB;Database=ForumDb;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True"));
+                    config.UseSqlServerStorage("Server=(localdb)\\MSSQLLocalDB;Database=ForumDbHangfire;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True"));
             builder.Services.AddHangfireServer();
 
             builder.Services.AddSignalR();

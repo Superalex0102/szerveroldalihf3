@@ -27,10 +27,12 @@ namespace szerveroldalihf3.Logic
             return mapper.Map<BugViewDto>(repository.GetAll());
         }
 
-        public async Task Create(BugCreateDto dto)
+        public async Task Create(BugCreateDto dto, string userId)
         {
             var forum = mapper.Map<Bug>(dto);
-            forum.AppUserId = "1";
+
+            forum.AppUserId = userId;
+            forum.Date = DateTime.Now;
             await repository.CreateAsync(forum);
         }
     }

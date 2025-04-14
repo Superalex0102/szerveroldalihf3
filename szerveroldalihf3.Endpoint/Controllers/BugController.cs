@@ -26,28 +26,30 @@ namespace szerveroldalihf3.Endpoint.Controllers
             this.backgroundJobClient = backgroundJobClient;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IEnumerable<BugViewDto> Get()
         {
             return logic.Read();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet("{slug}")]
         public BugViewDto Get(string slug)
         {
             return logic.Read(slug);
         }
 
+        [Authorize]
         [HttpPost("/createbug")]
         public async Task Post(BugCreateDto dto)
         {
-            await logic.Create(dto);
+            var user = await userManager.GetUserAsync(User);
+            if (user == null) return;
 
-            //backgroundJobClient.Enqueue(() => Console.WriteLine("Ez egy háttérfeladat!"));
+            await logic.Create(dto, user.Id);
 
             backgroundJobClient.Schedule(() => SendResponse(), TimeSpan.FromSeconds(15));
-
-            //await movieHub.Clients.All.SendAsync("newMovie");
         }
 
         [HttpGet("job")]
