@@ -9,12 +9,12 @@ using szerveroldalihf3.Entities.Entity;
 
 namespace szerveroldalihf3.Data
 {
-    public class ForumContext : IdentityDbContext
+    public class JiraContext : IdentityDbContext
     {
-        public DbSet<Bug> Bugs { get; set; }
+        public DbSet<Ticket> Bugs { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
 
-        public ForumContext(DbContextOptions<ForumContext> opt) : base(opt)
+        public JiraContext(DbContextOptions<JiraContext> opt) : base(opt)
         {
             Database.EnsureCreated();
         }
@@ -22,7 +22,7 @@ namespace szerveroldalihf3.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            modelBuilder.Entity<Bug>()
+            modelBuilder.Entity<Ticket>()
                 .HasOne(b => b.AppUser)
                 .WithMany(u => u.Bugs)
                 .OnDelete(DeleteBehavior.Cascade);

@@ -17,8 +17,8 @@ namespace szerveroldalihf3.Logic.Dto
         {
             Mapper = new Mapper(new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<BugCreateDto, Bug>();
-                cfg.CreateMap<Bug, BugViewDto>();
+                cfg.CreateMap<TicketCreateDto, Ticket>();
+                cfg.CreateMap<Ticket, TicketViewDto>();
             }));
         }
     }

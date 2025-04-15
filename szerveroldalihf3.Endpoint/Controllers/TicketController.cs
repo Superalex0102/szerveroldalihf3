@@ -12,13 +12,13 @@ namespace szerveroldalihf3.Endpoint.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class BugController : ControllerBase
+    public class TicketController : ControllerBase
     {
-        ForumLogic logic;
+        JiraLogic logic;
         UserManager<AppUser> userManager;
-        IHubContext<ForumHub> forumHub;
+        IHubContext<JiraHub> forumHub;
         IBackgroundJobClient backgroundJobClient;
-        public BugController(ForumLogic logic, UserManager<AppUser> userManager, IHubContext<ForumHub> forumHub, IBackgroundJobClient backgroundJobClient)
+        public TicketController(JiraLogic logic, UserManager<AppUser> userManager, IHubContext<JiraHub> forumHub, IBackgroundJobClient backgroundJobClient)
         {
             this.logic = logic;
             this.userManager = userManager;
@@ -28,21 +28,21 @@ namespace szerveroldalihf3.Endpoint.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
-        public IEnumerable<BugViewDto> Get()
+        public IEnumerable<TicketViewDto> Get()
         {
             return logic.Read();
         }
 
         [Authorize(Roles = "Admin")]
         [HttpGet("{slug}")]
-        public BugViewDto Get(string slug)
+        public TicketViewDto Get(string slug)
         {
             return logic.Read(slug);
         }
 
         [Authorize]
-        [HttpPost("/createbug")]
-        public async Task Post(BugCreateDto dto)
+        [HttpPost("/createticket")]
+        public async Task Post(TicketCreateDto dto)
         {
             var user = await userManager.GetUserAsync(User);
             if (user == null) return;

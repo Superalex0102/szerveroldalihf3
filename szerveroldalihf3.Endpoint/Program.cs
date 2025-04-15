@@ -38,7 +38,7 @@ namespace szerveroldalihf3.Endpoint
 
             builder.Services.AddSwaggerGen(option =>
             {
-                option.SwaggerDoc("v1", new OpenApiInfo { Title = "Forum API", Version = "v1" });
+                option.SwaggerDoc("v1", new OpenApiInfo { Title = "Jira API", Version = "v1" });
                 option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,
@@ -65,13 +65,13 @@ namespace szerveroldalihf3.Endpoint
             });
 
             builder.Services.AddTransient(typeof(Repository<>));
-            builder.Services.AddTransient<ForumLogic>();
+            builder.Services.AddTransient<JiraLogic>();
             builder.Services.AddTransient<DtoProvider>();
-            builder.Services.AddTransient<ForumHub>();
+            builder.Services.AddTransient<JiraHub>();
 
             builder.Services.AddIdentity<AppUser, IdentityRole>()
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ForumContext>()
+                .AddEntityFrameworkStores<JiraContext>()
                 .AddDefaultTokenProviders();
 
             builder.Services.AddAuthentication(option =>
@@ -87,21 +87,21 @@ namespace szerveroldalihf3.Endpoint
                 {
                     ValidateIssuer = true,
                     ValidateAudience = true,
-                    ValidAudience = "forum.com",
-                    ValidIssuer = "forum.com",
+                    ValidAudience = "jirahazi.com",
+                    ValidIssuer = "jirahazi.com",
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["jwt:key"] ?? throw new Exception("jwt:key not found in appsettings.json")))
                 };
             });
 
-            builder.Services.AddDbContext<ForumContext>(opt =>
+            builder.Services.AddDbContext<JiraContext>(opt =>
             {
                 opt
-                .UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=ForumDb;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True")
+                .UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=JiraDb;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True")
                 .UseLazyLoadingProxies();
             });
 
             builder.Services.AddHangfire(config =>
-                    config.UseSqlServerStorage("Server=(localdb)\\MSSQLLocalDB;Database=ForumDbHangfire;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True"));
+                    config.UseSqlServerStorage("Server=(localdb)\\MSSQLLocalDB;Database=JiraHangfire;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True"));
             builder.Services.AddHangfireServer();
 
             builder.Services.AddSignalR();
@@ -129,7 +129,7 @@ namespace szerveroldalihf3.Endpoint
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<ForumHub>("/forumHub");
+                endpoints.MapHub<JiraHub>("/forumHub");
             });
 
             app.UseHangfireDashboard();

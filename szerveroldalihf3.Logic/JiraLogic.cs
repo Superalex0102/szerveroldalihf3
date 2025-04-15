@@ -6,30 +6,30 @@ using szerveroldalihf3.Logic.Dto;
 
 namespace szerveroldalihf3.Logic
 {
-    public class ForumLogic
+    public class JiraLogic
     {
-        public Repository<Bug> repository;
+        public Repository<Ticket> repository;
         public Mapper mapper;
 
-        public ForumLogic(Repository<Bug> repository, DtoProvider provider)
+        public JiraLogic(Repository<Ticket> repository, DtoProvider provider)
         {
             this.repository = repository;
             this.mapper = provider.Mapper;
         }
 
-        public IEnumerable<BugViewDto> Read()
+        public IEnumerable<TicketViewDto> Read()
         {
-            return repository.GetAll().Select(t => mapper.Map<BugViewDto>(t));
+            return repository.GetAll().Select(t => mapper.Map<TicketViewDto>(t));
         }
 
-        public BugViewDto Read(string slug)
+        public TicketViewDto Read(string slug)
         {
-            return mapper.Map<BugViewDto>(repository.GetAll());
+            return mapper.Map<TicketViewDto>(repository.GetAll());
         }
 
-        public async Task Create(BugCreateDto dto, string userId)
+        public async Task Create(TicketCreateDto dto, string userId)
         {
-            var forum = mapper.Map<Bug>(dto);
+            var forum = mapper.Map<Ticket>(dto);
 
             forum.AppUserId = userId;
             forum.Date = DateTime.Now;

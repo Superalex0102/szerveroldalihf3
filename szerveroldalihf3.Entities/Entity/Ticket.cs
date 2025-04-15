@@ -9,7 +9,7 @@ using szerveroldalihf3.Entities.Helpers;
 
 namespace szerveroldalihf3.Entities.Entity
 {
-    public class Bug : IIdEntity
+    public class Ticket : IIdEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

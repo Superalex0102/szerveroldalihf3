@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace szerveroldalihf3.Entities.Dto.Bug
 {
-    public class BugViewDto
+    public class TicketViewDto
     {
         public string Id { get; set; } = "";
         public string Description { get; set; } = "";

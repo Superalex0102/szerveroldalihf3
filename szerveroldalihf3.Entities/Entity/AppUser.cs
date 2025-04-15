@@ -16,6 +16,6 @@ namespace szerveroldalihf3.Entities.Entity
         public required string RefreshToken { get; set; } = "";
 
         [NotMapped]
-        public virtual ICollection<Bug>? Bugs { get; set; }
+        public virtual ICollection<Ticket>? Bugs { get; set; }
     }
 }

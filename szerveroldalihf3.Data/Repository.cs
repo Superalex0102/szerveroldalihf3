@@ -10,8 +10,8 @@ namespace szerveroldalihf3.Data
 {
     public class Repository<T> where T : class, IIdEntity
     {
-        ForumContext ctx;
-        public Repository(ForumContext ctx)
+        JiraContext ctx;
+        public Repository(JiraContext ctx)
         {
             this.ctx = ctx;
         }

@@ -147,8 +147,8 @@ namespace szerveroldalihf3.Endpoint.Controllers
                   Encoding.UTF8.GetBytes(configuration["jwt:key"] ?? throw new Exception("jwt:key not found in appsettings.json")));
 
             return new JwtSecurityToken(
-                  issuer: "forum.com",
-                  audience: "forum.com",
+                  issuer: "jirahazi.com",
+                  audience: "jirahazi.com",
                   claims: claims?.ToArray(),
                   expires: DateTime.Now.AddMinutes(expiryInMinutes),
                   signingCredentials: new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256)
